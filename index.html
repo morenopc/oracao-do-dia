@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Imagem do Dia</title>
+  <style>
+    body { text-align: center; margin-top: 50px; }
+    img { max-width: 90%; height: auto; }
+  </style>
+</head>
+<body>
+
+<h1>Imagem do Dia</h1>
+<div id="imagem-do-dia"></div>
+
+<script>
+  const hoje = new Date();
+  const dia = hoje.getDate();
+  const mes = hoje.getMonth() + 1; // Janeiro = 1, Fevereiro = 2...
+
+  const mesesCom31Dias = [1, 3, 5, 7, 8, 10, 12];
+  const diasNoMes = (mes === 2) ? 30 : (mesesCom31Dias.includes(mes) ? 31 : 30);
+
+  const diaImagem = Math.min(dia, diasNoMes);
+  const nomeImagem = diaImagem + '-' + diasNoMes + '.png';
+
+  const urlBase = 'https://temploiniciatico.wordpress.com/wp-content/uploads/2025/06/';
+
+  document.getElementById('imagem-do-dia').innerHTML = `
+    <img src="${urlBase + nomeImagem}" alt="Imagem do Dia">
+  `;
+</script>
+
+</body>
+</html>
